@@ -1,6 +1,6 @@
 var filesLoaded = 0;
 var filesToLoad = 0;
-var cols = ["69D2E7", "A7DBD8", "E0E4CC", "F38630", "FA6900", "556270", "4ECDC4", "C7F464", "FF6B6B", "C44D58"]
+var cols = ["69D2E7", "A7DBD8", "E0E4CC", "F38630", "FA6900", "556270", "4ECDC4", "C7F464", "FF6B6B", "C44D58", "FEB07B", "E4A8D2", "D8254D", "1693A5", "FA565F", "FAF6E8", "68DDD2", "E8ED76"];
 var dictionary = {
     a: {text: "Albatross", img: "http://i.imgur.com/EWdclpd.png", sound: ""},
     b: {text: "Bat", img: "http://i.imgur.com/ihQsrkZ.png", sound: ""},
@@ -31,14 +31,20 @@ var dictionary = {
 }
 $(document).keypress(function(e){
     randomBG();
+    $('#info').hide();
     var c = String.fromCharCode(e.which).toLowerCase();
     var item = dictionary[c];
-    $('#title').text(item.text);
-    $('#img').attr("src", item.img)
-    if(item.audio != undefined){
-    		item.audio.stop();
-    		item.audio.play();
-    }
+    if(item != undefined)
+    {
+        $('#img-holder').hide();
+        $('#title').text(item.text);
+        $('#img').attr("src", item.img)
+        if(item.audio != undefined){
+            item.audio.stop();
+            item.audio.play();
+        }
+        $('#img-holder').fadeIn(300);
+    };
 })
 
 function randomBG(){
@@ -73,6 +79,7 @@ function isAppLoaded()
     if (filesLoaded >= filesToLoad){
         console.log("Loaded yeah");
         $('#title').text('Ready');
+        $('#info').text('now press any letter of the alphabet')
         //randomBG();
     }
 }
