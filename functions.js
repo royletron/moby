@@ -1,5 +1,3 @@
-var audio = Audion == undefined? false : true;
-console.log(audio.toString());
 var filesLoaded = 0;
 var filesToLoad = 0;
 var cols = ["69D2E7", "A7DBD8", "E0E4CC", "F38630", "FA6900", "556270", "4ECDC4", "C7F464", "FF6B6B", "C44D58"]
@@ -38,9 +36,8 @@ $(document).keypress(function(e){
     $('#title').text(item.text);
     $('#img').attr("src", item.img)
     if(item.audio != undefined){
-        var audioElement = $('#audio');
-        audioElement.attr('src', item.audio.src);
-        audioElement.attr('autoplay', 'autoplay');
+    		item.audio.stop();
+    		item.audio.play();
     }
 })
 
@@ -62,9 +59,7 @@ $(document).ready(function(){
         if(v.sound != "" && v.sound != undefined)
         {
             filesToLoad++;
-            v.audio = new Audio();
-            v.audio.addEventListener('canplaythrough', isAppLoaded, false);
-            v.audio.src = v.sound;
+            v.audio = new Howl({ urls: [v.sound], autoplay: false, onload: isAppLoaded});
         }
     });
 })
@@ -72,6 +67,8 @@ $(document).ready(function(){
 function isAppLoaded()
 {
     filesLoaded++;
+    var perc = Math.ceil((filesLoaded/filesToLoad) * 100);
+    $('body').css('background', 'linear-gradient(to right, #319b6f 0%,#319b6f '+perc+'%,#000000 '+(perc+1)+'%,#000000 100%);')
     if (filesLoaded >= filesToLoad){
         console.log("Loaded yeah");
         $('#title').text('Ready');
