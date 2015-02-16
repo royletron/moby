@@ -44,7 +44,7 @@ $(document).keypress(function(e){
 function randomBG(){
     var pos = Math.floor(Math.random()*cols.length);
     var col = cols[pos];
-    $('body').css("backgroundColor", "#"+col);
+    $('body').css("background", "#"+col);
 }
 
 $(document).ready(function(){
@@ -68,10 +68,11 @@ function isAppLoaded()
 {
     filesLoaded++;
     var perc = Math.ceil((filesLoaded/filesToLoad) * 100);
-    $('body').css('background', 'linear-gradient(to right, #319b6f 0%,#319b6f '+perc+'%,#000000 '+(perc+1)+'%,#000000 100%);')
+    $('body').css('background', 'linear-gradient(to right, #B1D27D 0%,#B1D27D '+perc+'%,#000000 '+(perc+1)+'%,#000000 100%);');
+    $('body').css('background', '-webkit-linear-gradient(left, #B1D27D 0%,#B1D27D '+perc+'%,#000000 '+(perc+1)+'%,#000000 100%)')
     if (filesLoaded >= filesToLoad){
         console.log("Loaded yeah");
         $('#title').text('Ready');
-        randomBG();
+        //randomBG();
     }
 }
