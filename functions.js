@@ -30,6 +30,7 @@ function randomBG(){
 
 function start()
 {
+	$('body').html('<h1 id="title">Loading... </h1><h2 id="info">hold \'yer orses\'</h2><div id="img-holder"><img id="img"/></div>')
     $.each(dictionary, function(k, v){
         $.each(v, function(j, iv){
             $.each(iv.images, function(h, image){
@@ -43,6 +44,10 @@ function start()
             })
         })
     });
+    if(mobile)
+    {
+    	$('body').append('<div id="mobile-keys"><a>a</a><a>b</a><a>c</a><a>d</a><a>e</a></div>');
+    }
 }
 
 function isAppLoaded()
