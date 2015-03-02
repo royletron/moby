@@ -3,6 +3,7 @@ body{
     text-align: center;
     padding: 0px;
     margin: 0px;
+    font-family: 'Averia Sans Libre', cursive;
 }
 #info, #title{
     text-shadow:#000000 -1px 1px 0,
@@ -10,7 +11,8 @@ body{
     #222222 -3px 3px 0,
     #444444 -4px 4px 0;
     color:#fff;
-    font-family: 'Averia Sans Libre', cursive;
+}
+#info, #title, .btn{
 }
 #info{
     font-size: 40px;
@@ -36,4 +38,6 @@ body{
 	width:100%;
 	padding: 5px;
 	text-align: left;
+    overflow-x: scroll;
+    height: 44px;
 }

@@ -3,13 +3,18 @@ var filesToLoad = 0;
 var cols = ["69D2E7", "A7DBD8", "E0E4CC", "F38630", "FA6900", "556270", "4ECDC4", "C7F464", "FF6B6B", "C44D58", "FEB07B", "E4A8D2", "D8254D", "1693A5", "FA565F", "FAF6E8", "68DDD2", "E8ED76"];
 
 $(document).keypress(function(e){
-    randomBG();
-    $('#info').hide();
     var c = String.fromCharCode(e.which).toLowerCase();
-    var key = dictionary[c];
+    gotoKey(c);
+})
+
+function gotoKey(k)
+{
+    $('#info').hide();
+    var key = dictionary[k];
     var item = key[Math.floor(Math.random()*key.length)];
     if(item != undefined)
     {
+        randomBG();
         var img = item.images[Math.floor(Math.random()*item.images.length)];
         $('#img-holder').hide();
         $('#title').text(item.name);
@@ -20,7 +25,7 @@ $(document).keypress(function(e){
         }
         $('#img-holder').fadeIn(300);
     };
-})
+}
 
 function randomBG(){
     var pos = Math.floor(Math.random()*cols.length);
@@ -46,7 +51,14 @@ function start()
     });
     if(mobile)
     {
-    	$('body').append('<div id="mobile-keys"><a>a</a><a>b</a><a>c</a><a>d</a><a>e</a></div>');
+        $('body').append('<div id="mobile-keys"></div>');
+        for (var i = 65; i <= 90; i++) {
+            var btn = $('<a class="btn btn--soft">'+String.fromCharCode(i)+'</a>');
+            btn.click(function(e){
+                gotoKey($(e.target).text().toLowerCase());
+            });
+            $('#mobile-keys').append(btn);
+        }
     }
 }
 

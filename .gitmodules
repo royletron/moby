@@ -1,0 +1,3 @@
+[submodule "beautons"]
+	path = beautons
+	url = https://github.com/csswizardry/beautons/
