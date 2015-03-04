@@ -52,13 +52,13 @@ function start()
     if(mobile)
     {
         $('body').append('<div id="mobile-keys"></div>');
-        for (var i = 65; i <= 90; i++) {
-            var btn = $('<a class="btn btn--soft">'+String.fromCharCode(i)+'</a>');
+        $.each(dictionary, function(idx, item){
+            var btn = $('<a class="btn blue-grey darken-4">'+idx+'</a><span> </span>');
             btn.click(function(e){
                 gotoKey($(e.target).text().toLowerCase());
             });
             $('#mobile-keys').append(btn);
-        }
+        });
     }
 }
 
